@@ -5,7 +5,6 @@ public class BinaryTree {
 
     Node root;
     Maximum max = new Maximum();
-    Node target_leaf = null;
 
     public void setRoot(Node node){
         this.root = node;
@@ -32,8 +31,8 @@ public class BinaryTree {
 
 
 
-    public void getMaxSumPath(Node node, Maximum max_sum_ref,
-                              int curr_sum, List<Node> currentList)
+    public void calculateMaxSumPath(Node node, Maximum max_sum_ref,
+                                    int curr_sum, List<Node> currentList)
     {
         if (node == null)
             return;
@@ -55,10 +54,10 @@ public class BinaryTree {
 
         // If this is not a leaf node, then recur down/down right
         if(node.left != null && isGoodNode(node.value, node.left.value)){
-            getMaxSumPath(node.left, max_sum_ref, curr_sum, new ArrayList<Node>(currentList));
+            calculateMaxSumPath(node.left, max_sum_ref, curr_sum, new ArrayList<Node>(currentList));
         }
         if(node.right != null && isGoodNode(node.value, node.right.value)){
-            getMaxSumPath(node.right, max_sum_ref, curr_sum, new ArrayList<Node>(currentList));
+            calculateMaxSumPath(node.right, max_sum_ref, curr_sum, new ArrayList<Node>(currentList));
         }
 
     }
@@ -70,12 +69,10 @@ public class BinaryTree {
         // base case
         if (root == null)
             return 0;
-        // find the target leaf and maximum sum
-        getMaxSumPath(root, max, 0, new ArrayList<Node>());
+        calculateMaxSumPath(root, max, 0, new ArrayList<Node>());
 
-        // print the path from root to the target leaf
         printMaxSumPath();
-        System.out.println(max.max_no);
+        System.out.println("The sum: " + max.max_no);
         return max.max_no; // return maximum sum
     }
 }

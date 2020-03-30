@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class DataHandling {
 
-    String sourceFilePath = "/Users/pop/dev/binary_tree/src/test.txt";
+    String sourceFilePath = "/Users/pop/dev/mdpyramid/src/test.txt";
 
     public BinaryTree loadBinaryTree() {
         Node[][] nodes = new Node[0][];
@@ -16,7 +16,6 @@ public class DataHandling {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        //System.out.println(nodes[3][1].getValue());
         BinaryTree tree = new BinaryTree();
         tree.setRoot(insertLevelOrder(nodes, tree.getRoot(), 0, 0));
         tree.maxSumPath();
@@ -36,11 +35,6 @@ public class DataHandling {
             root.setRight(insertLevelOrder(matrix, root.getRight(), i+1, j+1));
         }
         return root;
-    }
-
-    public static void main(String args[]) {
-        DataHandling dh = new DataHandling();
-        dh.loadBinaryTree();
     }
 }
 
