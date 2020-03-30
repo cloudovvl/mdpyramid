@@ -1,0 +1,3 @@
+# Introduction
+Application find maximum sum of node values in binary tree, having the fact that node values
+should be taken as following: odd -> even -> odd -> even...
